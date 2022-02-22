@@ -1,62 +1,95 @@
-#from email import message
 import telebot
-import os
 
+#chave do bot
 chave_api = '5113751813:AAEomz8_ZBi352EAon-iQdI8-vRQNorjyRk'
+
 bot = telebot.TeleBot(chave_api)
-''' usar caso não queria utilizar os comandose sim mensagens para o bot.
-def v1(mensagem):
-    if mensagem == 'opcao1':
-        return True
-    else:
-        return False'''
 
 
-@bot.message_handler(commands='opcao1')
-def opcao1(mensagem):
-    bot.reply_to(mensagem, 'selecionado 1')
+@bot.message_handler(commands='Comida')
+def Comida(mensagem):
+    bot.send_message(
+        mensagem.chat.id,
+        'Cardápio:\n/pizza\n/hamburguer\n/nhoque\n/sopa\n/Cancelar\nEscolha uma opção para selecionar.'
+    )
 
 
-@bot.message_handler(commands='opcao2')
-def opcao2(mensagem):
-    bot.reply_to(mensagem, 'selecionado 2')
+@bot.message_handler(commands='pizza')
+def pizza(mensagem):
+    if mensagem.text == '/pizza':
+        bot.send_message(mensagem.chat.id, 'Pizza Confirmada!')
 
 
-@bot.message_handler(commands='opcao3')
-def opcao3(mensagem):
-    bot.reply_to(mensagem, 'seleciando 3')
-    #print(mensagem)
-    bot.send_message(mensagem.chat.id, 'grupo')
-    # aqui eu envio amensagem sem responder a que me enviaram
-    #bot.send_message(-626105153, 'ola grup')# aqui eu envio mensagem a alguem ou grupo
+@bot.message_handler(commands='hamburguer')
+def hamburguer(mensagem):
+    if mensagem.text == '/hamburguer':
+        bot.send_message(mensagem.chat.id, 'Hamburguer Confirmado!')
 
 
-@bot.message_handler(commands='sair')
+@bot.message_handler(commands='nhoque')
+def nhoque(mensagem):
+    if mensagem.text == '/nhoque':
+        bot.send_message(mensagem.chat.id, 'Nhoque Confirmado!')
+
+
+@bot.message_handler(commands='sopa')
+def sopa(mensagem):
+    if mensagem.text == '/sopa':
+        bot.send_message(mensagem.chat.id, 'Sopa Confirmada!')
+#verificar como posso fazer com que essas funções não executem se n estiver na aba do cardapio
+
+@bot.message_handler(commands='Cancelar')
 def sair(mensagem):
-    bot.reply_to(mensagem, 'volte sempre!')
-    #responde a mensagem marcando a pessoa
+    bot.send_message(mensagem.chat.id, 'Cancelado!')
+
+
+@bot.message_handler(commands='Comida_com_bebidas')
+def Comida_com_bebidas(mensagem):
+    bot.send_message(
+        mensagem.chat.id,
+        'Cardápio:\n/pizza\n/hambuguer\n/nhoque\n/sopa\nBebidas:\n/Coca_cola_2l\n/Guarana_antartica_2l\n/Fanta_laranja_2l.\n/Latinha_500ml\n/Cancelar\nClique para selecionar.'
+    )
+
+
+@bot.message_handler(commands='Bebidas')
+def Bebidas(mensagem):
+    bot.send_message(
+        mensagem.chat.id,
+        'Bebidas:\n/Coca_cola_2l\n/Guarana_antartica_2l\n/Fanta_laranja_2l.\n/Latinha_500ml\n/Cancelar\nClique para selecionar.'
+    )
+
+
+@bot.message_handler(commands='Cancelar_pedido')
+def sair(mensagem):
+    bot.send_message(mensagem.chat.id, 'Volte sempre!')
 
 
 def verificar(mensagem):
-    return True
-    # qualquer mensagem vai rodar o bot
-    # somente no privado. Em grupo ele só é executado quando tem algum comando.
-
+    if mensagem.text == '/menu':
+        return True
+    else:
+        return False
+    # só vai rodar com o /menu, porem precisa de alguns ajustes
 
 @bot.message_handler(func=verificar)
-#quando será executado / pega a info do polling e diz quando o responder tem que ser executado
+
 def responder(mensagem):
     menu = '''
 
-Olá, seja bem-vindo!{os.linesep}Selecione uma opção para fazer o seu pedido:
+Olá, seja bem-vindo ao sistema de pedidos!\nSelecione uma opção para escolher o seu pedido:
 
-/opcao1
-/opcao2
-/opcao3
-/Cancelar
+/Comida
+/Comida_com_bebidas
+/Bebidas
+/Cancelar_pedido
 
     '''
     bot.reply_to(mensagem, menu)
 
 
-bot.polling()  # sempre lendo
+''' bot.send_message(mensagem.chat.id, 'resposta no mesmo chat') 
+    bot.send_message(-626105153, 'resposta podendo ser enviada para outro chat') aqui eu envio mensagem a alguem ou grupo
+'''
+
+#looping
+bot.polling()
