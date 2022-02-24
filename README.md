@@ -8,7 +8,8 @@ _<a href='https://cloretojannuzzi.github.io'> Site do Telegram bot(apenas ilustr
 _versão 1.0_
 
 - Objetivo deste bot é responder alguns comandos configurados.
-- Peguei de base o código ensinado no canal do pessoal da Hastag no <a href="https://www.youtube.com/watch?v=_RQw5Nw7Op0"> youtube</a>. Por ser um código de fácil compreensão decidi usa-lo para fazer um pequeno bot, a principio meu objetivo seria fazer um bot para o jogo coin master contendo as informações do preço de cada vila, custo, descontos e entre outros, porem estou apenas entendo como funciona a principio.
+- Peguei de base o código ensinado no canal do pessoal da Hastag no <a href="https://www.youtube.com/watch?v=_RQw5Nw7Op0"> youtube</a>. Por ser um código de fácil compreensão decidi usá-lo para fazer um pequeno bot, a principio meu objetivo seria fazer um bot para o jogo coin master contendo as informações do preço de cada vila, custo, descontos e entre outros, porem estou apenas entendo como funciona a princípio.
+- O código ainda possui algumas falhas.
 
 ### Projeto de estudos.
 
